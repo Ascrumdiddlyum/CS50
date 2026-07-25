@@ -22,14 +22,14 @@ def check_extension(argument):
 
 def paste_img(argument):
     try:
-        muppet_img = Image.open(argument[1])
-        shirt_img = Image.open("shirt.png")
+        muppet_img = Image.open(f"data/shirt/{argument[1]}")
+        shirt_img = Image.open("data/shirt/shirt.png")
         shirt_size = shirt_img.size
         fit_muppet = ImageOps.fit(muppet_img, shirt_size)
         fit_muppet.paste(shirt_img, mask=shirt_img)
-        fit_muppet.save(argument[2])
+        fit_muppet.save(f"data/shirt/{argument[2]}")
     except FileNotFoundError:
-        sys.exit("Input does not exist")
+        sys.exit("File does not exist")
 
 check_arg(sys.argv)
 check_extension(sys.argv)
